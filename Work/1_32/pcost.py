@@ -3,10 +3,10 @@ import csv
 
 
 def portfolio_cost(filename):
+    total = 0.0
     with open(filename, "rt") as infile:
         csv_reader = csv.reader(infile)
         next(csv_reader)  # skip the headers on the 1st line
-        total = 0.0
         for portfolio in csv_reader:
             try:
                 total += int(portfolio[1]) * float(portfolio[2])
