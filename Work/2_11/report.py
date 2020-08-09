@@ -44,8 +44,9 @@ def make_report(portfolio: list, prices: dict):
 
 
 def pretty_print(report: list):
+    # f-string can be nested
     for row in report:
-        print(f"{row[0]:10s} {row[1]:10d} {row[2]:10.2f} {row[3]:10.2f}")
+        print(f"{row[0]:10s} {row[1]:10d} {f'${row[2]:.2f}':>10s} {row[3]:10.2f}")
 
 
 def create_header(header: list):
