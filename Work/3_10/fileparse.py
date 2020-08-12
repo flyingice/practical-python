@@ -11,6 +11,7 @@ def parse_csv(
     types: list = None,
     has_headers: bool = True,
     delimiter: str = ",",
+    silence_errors: bool = False,
 ):
     """
     Parse a CSV file into a list of records
@@ -49,7 +50,8 @@ def parse_csv(
                     record = tuple(row)
                 records.append(record)
             except ValueError as e:
-                print(f"Row {lineno}: Couldn't convert {row}")
-                print("Reason", e)
+                if not silence_errors:
+                    print(f"Row {lineno}: Couldn't convert {row}")
+                    print("Reason", e)
 
         return records
