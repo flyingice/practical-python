@@ -66,4 +66,13 @@ def portfolio_report(portfolio_filename: str, prices_filename: str):
     print_report(report)
 
 
-portfolio_report("Work/Data/portfolio.csv", "Work/Data/prices.csv")
+def main(args):
+    if len(args) != 3:
+        raise SystemExit("Invalid parameters")
+    portfolio_report(args[1], args[2])
+
+
+if __name__ == "__main__":
+    import sys
+
+    main(sys.argv)
