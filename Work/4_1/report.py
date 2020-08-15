@@ -47,7 +47,7 @@ def portfolio_report(portfolio_filename: str, prices_filename: str):
     portfolios = read_portfolio(portfolio_filename)
     prices = read_prices(prices_filename)
     report = make_report(portfolios, prices)
-    formatter = tableformat.TableFormatter()
+    formatter = tableformat.HTMLTableFormatter()
     print_report(report, formatter)
 
 
