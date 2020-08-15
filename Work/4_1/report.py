@@ -2,6 +2,7 @@
 
 import fileparse
 import stock
+import tableformat
 
 
 def read_portfolio(filename):
@@ -34,20 +35,20 @@ def make_report(portfolios: list, prices: dict):
     return report
 
 
-def print_report(report: list):
-    header = ("Name", "Shares", "Price", "Change")
-    print(" ".join([f"{h:>10s}" for h in header]))
-    print(" ".join(["-" * 10 for h in header]))
-    # f-string can be nested
-    for row in report:
-        print(f"{row[0]:>10s} {row[1]:>10d} {f'${row[2]:.2f}':>10s} {row[3]:10.2f}")
+def print_report(report: list, formatter: tableformat.TableFormatter):
+    """Print a nicely formated table from a list"""
+    formatter.headings(["Name", "Shares", "Price", "Change"])
+    for name, shares, price, change in report:
+        rowdata = [name, str(shares), f"{price:.2f}", f"{change:.2f}"]
+        formatter.row(rowdata)
 
 
 def portfolio_report(portfolio_filename: str, prices_filename: str):
     portfolios = read_portfolio(portfolio_filename)
     prices = read_prices(prices_filename)
     report = make_report(portfolios, prices)
-    print_report(report)
+    formatter = tableformat.TableFormatter()
+    print_report(report, formatter)
 
 
 def main(args):
