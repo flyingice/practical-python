@@ -1,3 +1,6 @@
+import stock
+
+
 class TableFormatter:
     def headings(self, headers: list):
         """Emit the table headings."""
@@ -60,3 +63,9 @@ def create_formatter(fmt: str):
         return HTMLTableFormatter()
     else:
         raise RuntimeError(f"Unknown format {fmt}")
+
+
+def print_table(portfolios: stock.Stock, colnames: list, formatter: TableFormatter):
+    formatter.headings(colnames)
+    for portfolio in portfolios:
+        formatter.row([str(getattr(portfolio, colname)) for colname in colnames])
