@@ -4,6 +4,11 @@ class Stock:
         self.shares = shares
         self.price = price
 
+    def __repr__(self):
+        """The convention for __repr__() os to return a string that, when fed to eval(),
+        will create the underlying object, if possible."""
+        return f"Stock({self.name}, {self.shares}, {self.price})"
+
     def cost(self):
         return self.shares * self.price
 
