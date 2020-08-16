@@ -52,9 +52,9 @@ def portfolio_report(portfolio_filename: str, prices_filename: str, fmt: str = "
 
 
 def main(args):
-    if len(args) != 3:
+    if len(args) != 4:
         raise SystemExit("Invalid parameters")
-    portfolio_report(args[1], args[2])
+    portfolio_report(args[1], args[2], args[3])
 
 
 if __name__ == "__main__":
