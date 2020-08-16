@@ -49,3 +49,14 @@ class HTMLTableFormatter(TableFormatter):
                 "".join(["<td>" + coldata + "</td>" for coldata in rowdata])
             )
         )
+
+
+def create_formatter(fmt: str):
+    if fmt == "txt":
+        return TextTableFormatter()
+    elif fmt == "csv":
+        return CSVTableFormatter()
+    elif fmt == "html":
+        return HTMLTableFormatter()
+    else:
+        raise RuntimeError(f"Unknown format {fmt}")

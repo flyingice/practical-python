@@ -43,11 +43,11 @@ def print_report(report: list, formatter: tableformat.TableFormatter):
         formatter.row(rowdata)
 
 
-def portfolio_report(portfolio_filename: str, prices_filename: str):
+def portfolio_report(portfolio_filename: str, prices_filename: str, fmt: str = "txt"):
     portfolios = read_portfolio(portfolio_filename)
     prices = read_prices(prices_filename)
     report = make_report(portfolios, prices)
-    formatter = tableformat.HTMLTableFormatter()
+    formatter = tableformat.create_formatter(fmt)
     print_report(report, formatter)
 
 
