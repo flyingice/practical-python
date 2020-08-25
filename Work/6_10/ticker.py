@@ -13,8 +13,7 @@ def convert_types(rows, types):
 
 
 def make_dicts(rows, headers):
-    for row in rows:
-        yield dict(zip(headers, row))
+    return (dict(zip(headers, row)) for row in rows)
 
 
 def parse_stock_data(lines):
@@ -26,9 +25,7 @@ def parse_stock_data(lines):
 
 
 def filter_symbols(rows, names):
-    for row in rows:
-        if row["name"] in names:
-            yield row
+    return (row for row in rows if row["name"] in names)
 
 
 def ticker(portfile, logfile, fmt):
