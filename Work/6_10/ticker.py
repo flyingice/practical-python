@@ -31,6 +31,19 @@ def filter_symbols(rows, names):
             yield row
 
 
+def ticker(portfile, logfile, fmt):
+    import report
+    import tableformat
+
+    portfolio = report.read_portfolio(portfile)
+    rows = parse_stock_data(follow(logfile))
+    rows = filter_symbols(rows, portfolio)
+    fmt = tableformat.create_formatter(fmt)
+    fmt.headings(["Name", "Price", "Change"])
+    for row in rows:
+        fmt.row([row["name"], str(row["price"]), str(row["change"])])
+
+
 if __name__ == "__main__":
     import report
 
