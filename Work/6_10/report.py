@@ -12,7 +12,7 @@ def read_portfolio(filename):
             infile, select=["name", "shares", "price"], types=[str, int, float]
         )
 
-    portfolios = [stock.Stock(d["name"], d["shares"], d["price"]) for d in portfolios]
+    portfolios = [stock.Stock(**d) for d in portfolios]
     return portfolio.Portfolio(portfolios)
 
 
