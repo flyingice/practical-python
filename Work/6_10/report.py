@@ -6,10 +6,10 @@ import tableformat
 import portfolio
 
 
-def read_portfolio(filename):
+def read_portfolio(filename, **opts):
     with open(filename, "rt") as infile:
         portfolios = fileparse.parse_csv(
-            infile, select=["name", "shares", "price"], types=[str, int, float]
+            infile, select=["name", "shares", "price"], types=[str, int, float], **opts
         )
 
     portfolios = [stock.Stock(**d) for d in portfolios]
