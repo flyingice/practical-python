@@ -12,3 +12,15 @@ def typedproperty(name, expected_type):
         setattr(self, private_name, value)
 
     return prop
+
+
+def String(name):
+    return typedproperty(name, str)
+
+
+def Integer(name):
+    return typedproperty(name, int)
+
+
+def Float(name):
+    return typedproperty(name, float)
